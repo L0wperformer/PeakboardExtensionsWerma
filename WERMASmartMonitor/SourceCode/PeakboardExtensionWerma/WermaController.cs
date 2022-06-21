@@ -107,19 +107,20 @@ namespace PeakboardExtensionWerma
                         {
                             string cs = sqlrow2[sqlcol2.ColumnName].ToString();
 
+
                             if (cs == "0")
                             {
                                 cs = "Off";
                             }
-                            else if (cs == "1" || cs == "2" || cs == "3" || cs == "16" || cs == "17" || cs == "18" || cs == "19")
+                            else if (cs == "1" || cs == "2" || cs == "3")
                             {
                                 cs = "On";
                             }
-                            else if (cs == "20" || cs == "21" || cs == "22" || cs == "23")
+                            else if (cs == "16" || cs == "17" || cs == "18")
                             {
                                 cs = "Blinking";
                             }
-                            
+
                             newitem.Add(sqlcol2.ColumnName, cs);
                         }
                         items.Add(newitem);
