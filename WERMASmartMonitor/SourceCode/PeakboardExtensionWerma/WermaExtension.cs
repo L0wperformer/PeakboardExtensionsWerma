@@ -16,9 +16,9 @@ namespace PeakboardExtensionWerma
             {
                 ID = "Werma",
                 Name = "Werma Extension",
-                Description = "This is an Extension for accessing Werma data.",
+                Description = "Modified Extension for a project at Hochschule Esslingen",
                 Version = "1.0",
-                Author = "Peakboard Team",
+                Author = "Peakboard Team, edited by Pascal Rosenfeld",
                 Company = "Peakboard GmbH",
                 Copyright = "Copyright © 2021",
             };
