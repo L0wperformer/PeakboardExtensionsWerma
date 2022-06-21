@@ -126,8 +126,15 @@ namespace PeakboardExtensionWerma
                                 cs = "Blinking";
                             }
 
+                        
                             newitem.Add(sqlcol2.ColumnName, cs);
                         }
+
+                        DataColumn counterColumn = sqlCounterResult.Columns[0];
+                        DataRow counterRow = sqlCounterResult.Rows[0];
+                        string sendThis = counterRow[counterColumn].ToString();
+                        newitem.Add("Channel4", sendThis);
+
                         items.Add(newitem);
                     }
                 }
