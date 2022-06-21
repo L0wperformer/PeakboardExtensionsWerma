@@ -97,8 +97,13 @@ namespace PeakboardExtensionWerma
                 {
                     string deviceSlaveId = sqlrow1[sqlcol1.ColumnName].ToString();
 
-                    string commandText2 = $"SELECT MacId as ID, Name, Channel1, Channel2, Channel3, Channel4 FROM dbo.slaveData, dbo.slaveDevice WHERE dbo.slaveData.slaveId = dbo.slaveDevice.id AND dbo.slaveData.id = (SELECT MAX(id) FROM dbo.slaveData WHERE slaveId = {deviceSlaveId})";
+                    string commandText2 = $"SELECT MacId as ID, Name, Channel1, Channel2, Channel3 FROM dbo.slaveData, dbo.slaveDevice WHERE dbo.slaveData.slaveId = dbo.slaveDevice.id AND dbo.slaveData.id = (SELECT MAX(id) FROM dbo.slaveData WHERE slaveId = {deviceSlaveId})";
                     DataTable sqlresult2 = GetSQLTable(data, commandText2);
+
+                    string commandTextCounter = $"SELECT counterValue FROM dbo.slaveCounter WHERE slaveId = {deviceSlaveId} ORDER BY id DESC";
+                    DataTable sqlCounterResult = GetSQLTable(data, commandTextCounter);
+
+                
 
                     foreach (DataRow sqlrow2 in sqlresult2.Rows)
                     {
