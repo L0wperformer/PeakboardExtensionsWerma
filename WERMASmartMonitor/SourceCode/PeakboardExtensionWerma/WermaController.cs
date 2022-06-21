@@ -90,13 +90,13 @@ namespace PeakboardExtensionWerma
             DataTable sqlresult1 = GetSQLTable(data, commandText1);
 
             var items = new CustomListObjectElementCollection();
-
+            //=======Foreeach Lamp....==========
             foreach (DataRow sqlrow1 in sqlresult1.Rows)
             {
                 foreach (DataColumn sqlcol1 in sqlresult1.Columns)
                 {
                     string deviceSlaveId = sqlrow1[sqlcol1.ColumnName].ToString();
-
+                    //===Queries===
                     string commandText2 = $"SELECT MacId as ID, Name, Channel1, Channel2, Channel3 FROM dbo.slaveData, dbo.slaveDevice WHERE dbo.slaveData.slaveId = dbo.slaveDevice.id AND dbo.slaveData.id = (SELECT MAX(id) FROM dbo.slaveData WHERE slaveId = {deviceSlaveId})";
                     DataTable sqlresult2 = GetSQLTable(data, commandText2);
 
@@ -104,7 +104,7 @@ namespace PeakboardExtensionWerma
                     DataTable sqlCounterResult = GetSQLTable(data, commandTextCounter);
 
                 
-
+                    //======Foreach Channel (=State) Of Lamp =======
                     foreach (DataRow sqlrow2 in sqlresult2.Rows)
                     {
                         CustomListObjectElement newitem = new CustomListObjectElement();
@@ -129,7 +129,7 @@ namespace PeakboardExtensionWerma
                         
                             newitem.Add(sqlcol2.ColumnName, cs);
                         }
-
+                        //======Add Counter Value as Channel 4=======
                         DataColumn counterColumn = sqlCounterResult.Columns[0];
                         DataRow counterRow = sqlCounterResult.Rows[0];
                         string sendThis = counterRow[counterColumn].ToString();
